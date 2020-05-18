@@ -1,0 +1,110 @@
+{
+    "posts": [
+        {
+            "id": "bfa07982-bd6e-4e8a-be11-c2dafd0608b2",
+            "imageURL": "http://dummyimage.com/243x179.jpg/5fa2dd/ffffff",
+            "author": "Ada",
+            "date": "2019-05-10",
+            "numberOfLikes": 10,
+            "comments": [
+                {
+                    "author": "Piotr",
+                    "content": "a ala ma kota",
+                    "date": "2019-05-10"
+                },
+                {
+                    "author": "Ada",
+                    "content": "a ala ma kota",
+                    "date": "2019-05-11"
+                },
+                {
+                    "author": "Marcel",
+                    "content": "a ala ma kota",
+                    "date": "2019-05-12"
+                }
+            ]
+        },
+        {
+            "id": "0236c65b-be68-4310-845b-1e31f6cef5c2",
+            "author": "Marcel",
+            "date": "2019-05-10",
+            "numberOfLikes": 10,
+            "imageURL": "http://dummyimage.com/164x249.bmp/5fa2dd/ffffff",
+            "comments": []
+        },
+        {
+            "id": "07ec8fde-56a2-435f-b85b-2d067ad93ae9",
+            "author": "Ada",
+            "date": "2019-05-10",
+            "numberOfLikes": 10,
+            "imageURL": "http://dummyimage.com/213x178.png/dddddd/000000",
+            "comments": []
+        },
+        {
+            "id": "c51af918-9e6c-41ef-8a4d-09d89e299cf3",
+            "author": "Piotr",
+            "date": "2019-05-10",
+            "numberOfLikes": 8,
+            "imageURL": "http://dummyimage.com/230x154.bmp/ff4444/ffffff",
+            "comments": []
+        },
+        {
+            "id": "4d3e7bf8-0cb6-48be-b0b5-6b4deb7c690a",
+            "author": "Piotr",
+            "date": "2019-05-10",
+            "numberOfLikes": 10,
+            "imageURL": "http://dummyimage.com/205x133.bmp/ff4444/ffffff",
+            "comments": []
+        },
+        {
+            "id": "6112ba2c-34e7-4a79-af66-f9c7c1a97fba",
+            "author": "Piotr",
+            "date": "2019-05-10",
+            "numberOfLikes": 10,
+            "imageURL": "http://dummyimage.com/119x172.png/ff4444/ffffff",
+            "comments": []
+        },
+        {
+            "id": "f93c51a2-6415-439a-857c-34d8a8bf7693",
+            "author": "Piotr",
+            "date": "2019-05-10",
+            "numberOfLikes": 10,
+            "imageURL": "http://dummyimage.com/114x121.bmp/ff4444/ffffff",
+            "comments": []
+        },
+        {
+            "id": "737a7a4c-c675-4b15-98b9-225aa2b2b4db",
+            "author": "Piotr",
+            "date": "2019-05-10",
+            "numberOfLikes": 10,
+            "imageURL": "http://dummyimage.com/222x229.png/dddddd/000000",
+            "comments": []
+        },
+        {
+            "id": "e283ca9e-f50f-4c1c-9a7a-44af559bdf4a",
+            "author": "Piotr",
+            "date": "2019-05-10",
+            "numberOfLikes": 10,
+            "imageURL": "http://dummyimage.com/138x126.jpg/ff4444/ffffff",
+            "comments": []
+        },
+        {
+            "id": "707db8ed-c134-4963-a170-85aa71cc449e",
+            "author": "Piotr",
+            "date": "2019-05-10",
+            "numberOfLikes": 10,
+            "imageURL": "http://dummyimage.com/198x198.bmp/dddddd/000000",
+            "comments": []
+        }
+    ],
+    "comments": [
+        {
+            "id": 1,
+            "body": "some comment",
+            "postId": 1
+        }
+    ],
+    "profile": {
+        "name": "typicode"
+    }
+}
