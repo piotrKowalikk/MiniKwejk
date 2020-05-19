@@ -7,6 +7,7 @@ import { IUserState } from "./users/types/userTypes";
 import { usersReducer } from "./users/usersReducer";
 import { IReservationState } from "./reservations/types/reservationTypes";
 import { reservationsReducer } from "./reservations/reservationReducer";
+import { setupCognito, cognito } from 'react-cognito';
 
 
 export interface IApplicationState {
@@ -14,11 +15,13 @@ export interface IApplicationState {
      cars: ICarState;
      users: IUserState;
      reservations: IReservationState;
+     cognito: any;
 }
 
 export const rootReducer = combineReducers({
      authorize: authorizeReducer,
      cars: carsReducer,
      users: usersReducer,
-     reservations: reservationsReducer
+     reservations: reservationsReducer,
+     cognito,
 });

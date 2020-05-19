@@ -5,6 +5,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { IApplicationState } from '../../redux/rootReducer';
 import { IAuthorizeState } from '../../redux/authorization/types/authorizationTypes';
 import { logOutAction } from '../../redux/authorization/actions/logOutAction';
+import { innerGreyColor } from '../../colors';
 
 interface ILogOutProps extends RouteComponentProps {
     logOutAction: Function;
@@ -30,7 +31,8 @@ class LogOut extends React.Component<ILogOutProps, ILogOutState>{
             marginTop: '-9em', /*set to a negative number 1/2 of your height*/
             marginLeft: '-15em', /*set to a negative number 1/2 of your width*/
             border: ' 1px solid #ccc',
-            'backgroundColor': '#f3f3f3',
+            backgroundColor: innerGreyColor,
+            color: "white"
         }
 
         return (

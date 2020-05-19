@@ -5,14 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider, connect } from 'react-redux'
 import NavBar from './NavBar';
 import LogIn from './Authentication/LogIn';
-import EnhancedTableUsers from './Users/UserTableSorted';
-import EnhancedTableCars from './Cars/CarsTable';
-import CarsDetails from './Cars/CarsDetails';
-import AllReservations from './Reservations/AllReservations';
-import MakeUnavailable from './Cars/MakeUnavailable';
 import LogOut from './Authentication/LogOut';
-import CarsEdit from './Cars/CarsEdit';
-import CarsAdd from './Cars/CarsAdd';
 import Home from './Home';
 import { IApplicationState } from '../redux/rootReducer';
 import { IAuthorizeState } from '../redux/authorization/types/authorizationTypes';
@@ -23,6 +16,11 @@ import { PostDetailsContainer } from './Post/PostDetailsContainer';
 import { PostView } from './Post/Post';
 import { PostListContainer } from './Post/PostListContainer';
 import { relative } from 'path';
+import RegisterForm from './Cognito/RegisterForm';
+import PasswordResetForm from './Cognito/PasswordResetForm';
+import ChangePasswordForm from './Cognito/ChangePasswordForm';
+import Dashboard from './Cognito/Dashboard';
+import UpdateEmailForm from './Cognito/UpdateEmailForm';
 
 class AppRouter extends React.Component<{}, undefined> {
 
@@ -33,24 +31,22 @@ class AppRouter extends React.Component<{}, undefined> {
                     <NavBar />
                     <Route exact path="/" component={Home} />
                     <Route path="/logIn" component={LogIn} />
-                    <Route path="/users" component={EnhancedTableUsers} />
-                    <Route path="/cars" component={EnhancedTableCars} />
-                    <Route path="/car-details" component={CarsDetails} />
-                    <Route path="/car-edit" component={CarsEdit} />
-                    <Route path="/car-add" component={CarsAdd} />
-                    <Route path="/make-unavailable" component={MakeUnavailable} />
                     <Route path="/logOut" component={LogOut} />
-                    <Route path="/reservations" component={AllReservations} />
                     <Route path="/posts" component={PostListContainer} />
                     <Route path="/createPost" component={CreatePost} />
                     <Route path="/postDetails/:id" component={PostDetailsContainer} />
+                    <Route exact path="/dashboard" component={Dashboard} />
+                    <Route exact path="/register" component={RegisterForm} />
+                    <Route exact path="/reset" component={PasswordResetForm} />
+                    <Route exact path="/change_password" component={ChangePasswordForm} />
+                    <Route exact path="/change_email" component={UpdateEmailForm} />
                 </div>
                 <div style={{ position: "relative" }}>
                     <Footer />
                 </div>
             </div>
         );
-    }
+    } 
 }
 
 const mapStateToProps = ({ users, authorize }: IApplicationState) => {

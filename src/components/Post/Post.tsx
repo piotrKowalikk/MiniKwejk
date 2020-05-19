@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { Post } from "../../Models/Post";
 import { Link } from "react-router-dom";
+import { innerGreyColor } from "../../colors";
 
 
 export interface IPostProps {
@@ -15,7 +16,7 @@ export const PostView: React.FC<IPostProps> = (props: IPostProps) => {
         borderStyle: "groove",
         marginTop: 5,
         "maxWidth": "60vw",
-        backgroundColor: "#26292d",
+        backgroundColor: innerGreyColor,
         marginRight:0
     };
     const styleAuthorBar: React.CSSProperties = {

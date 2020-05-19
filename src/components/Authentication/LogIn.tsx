@@ -10,6 +10,7 @@ import { IApplicationState } from '../../redux/rootReducer';
 import { IAuthorizeState } from '../../redux/authorization/types/authorizationTypes';
 import { cleanUpAutorizationAction } from '../../redux/authorization/actions/cleanUpAutorizationAction';
 import { loadFromStorage } from '../../redux/authorization/actions/loadFromSotrage';
+import { innerGreyColor } from '../../colors';
 
 interface ILogInProps extends RouteComponentProps {
     submitUserCredentials: typeof submitUserCredentials;
@@ -122,7 +123,8 @@ class LogIn extends React.Component<ILogInProps, ILogInState>{
             marginTop: '-9em', /*set to a negative number 1/2 of your height*/
             marginLeft: '-15em', /*set to a negative number 1/2 of your width*/
             border: ' 1px solid #ccc',
-            'backgroundColor': '#f3f3f3',
+            'backgroundColor': innerGreyColor,
+            color: "white"
         }
 
         const buttonProgress: React.CSSProperties = {
@@ -151,7 +153,7 @@ class LogIn extends React.Component<ILogInProps, ILogInState>{
                         }
                     </Form.Group>
                     <div>
-                        <Button ref={this.submitButton} disabled={this.props.isLoading} className="btn-primary" type="submit">Submit</Button>
+                        <Button ref={this.submitButton} disabled={this.props.isLoading} className="btn-success" type="submit">Submit</Button>
                         {this.state.loading &&
                             <div style={{ marginLeft: (-1) * (this.submitButton.current ? this.submitButton.current.offsetWidth / 2 + 6 : 0) }} className="spinner-border spinner-border-sm" role="status">
                                 <span className="sr-only">Loading...</span>
