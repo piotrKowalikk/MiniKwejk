@@ -128,11 +128,8 @@ class LogIn extends React.Component<ILogInProps, ILogInState>{
         }
 
         const buttonProgress: React.CSSProperties = {
-            //    position: 'absolute',
             top: '50%',
             left: '50%',
-            // marginTop: -12,
-            // marginLeft: -12,
         }
 
         return (

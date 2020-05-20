@@ -1,11 +1,11 @@
 import * as React from "react";
-import * as PropTypes from 'prop-types';
+import { withRouter, RouteComponentProps } from "react-router-dom";
 
 interface ILogoutButton {
   onClick: any;
 }
-const LogoutButton = ({ onClick }) => (
-  <button onClick={onClick}>Log out</button>
+const LogoutButton: React.FC<ILogoutButton> = (props: ILogoutButton) => (
+  <div onClick={props.onClick}>Log out</div>
 );
 
 export default LogoutButton;

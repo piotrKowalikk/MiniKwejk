@@ -10,11 +10,10 @@ import {
   EmailVerification,
   Confirm,
 } from 'react-cognito';
-import LogoutButton from './LogoutButton';
-import LoginForm from './LoginForm';
-import EmailVerificationForm from './EmailVerificationForm';
+// import EmailVerificationForm from './EmailVerificationForm';
 import NewPasswordRequiredForm from './NewPasswordRequiredForm';
-import ConfirmForm from './ConfirmForm';
+import ConfirmForm from '../Register/ConfirmForm';
+// import { LoginPage } fro./Login/LoginPageage";
 
 interface IBaseDashboard {
   user: any;
@@ -29,7 +28,7 @@ const loggedInPage = (user, attributes) => (
     <ul>
       <li>
         <Logout>
-          <LogoutButton onClick={()=>{}} />
+          {/* <LogoutButton onClick={() => { }} /> */}
         </Logout>
       </li>
       <li><Link to="/change_password">Change password</Link></li>
@@ -60,9 +59,7 @@ const loggedInPage = (user, attributes) => (
 const loggedOutPage = () => (
   <div>
     <p>not logged in</p>
-    <Login>
-      <LoginForm clearCache={() => { }} error={"log in error"} onSubmit={() => { }} />
-    </Login>
+    {/* <LoginPage   /> */}
     <ul>
       <li><Link to="/register">Register</Link></li>
       <li><Link to="/reset">Password reset</Link></li>
@@ -83,7 +80,7 @@ const emailVerificationPage = () => (
   <div>
     <p>You must verify your email address.  Please check your email for a code</p>
     <EmailVerification>
-      <EmailVerificationForm onSubmit={() => { }} onCancel={() => { }} error={"email error"} />
+      {/* <EmailVerificationForm onSubmit={() => { }} onCancel={() => { }} error={"email error"} /> */}
     </EmailVerification>
   </div>
 );
@@ -112,6 +109,7 @@ const BaseDashboard = ({ state, user, attributes }) => {
     case CognitoState.LOGGING_IN:
       return (
         <div>
+          <img src="ajax-loader.gif" alt="" />
         </div>
       )
     case CognitoState.LOGGED_OUT:

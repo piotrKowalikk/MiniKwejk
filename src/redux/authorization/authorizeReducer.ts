@@ -3,7 +3,7 @@ import { badLogin, badPassword } from "./authorizeMessages";
 import { IAuthorizeState, AuthorizeActionTypes } from "./types/authorizationTypes";
 
 export const initialState: IAuthorizeState = {
-    isAuthorized: true,
+    isAuthorized: false,
     token: null,
     message: null,
     isLoading: false

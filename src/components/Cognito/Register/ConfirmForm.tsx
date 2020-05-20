@@ -23,6 +23,8 @@ class ConfirmForm extends React.Component<IConfirmForm, any> {
     this.props.onSubmit(this.state.verificationCode)
       .then((user) => {
         console.log(user);
+        //TODO- here 
+
       })
       .catch((error) => {
         this.setState({ error });

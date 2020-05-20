@@ -7,41 +7,48 @@ import { Button } from '@material-ui/core';
 import { IApplicationState } from '../redux/rootReducer';
 import { IAuthorizeState } from '../redux/authorization/types/authorizationTypes';
 import { connect } from 'react-redux';
+import LogoutButton from './Cognito/LogoutButton';
+import { CognitoState, Logout } from 'react-cognito';
 
 
 export interface INavBarProps {
-    isAuthorized: boolean;
+    state: string;
 }
 
 const NavBar = (props: INavBarProps) => {
     return (
-        <Navbar className="justify-content-between" style={{backgroundColor:"black"}}>
+        <Navbar className="justify-content-between" style={{ backgroundColor: "black" }}>
             <Form inline>
                 {/* <Link className='btn shadow-none' style={{ color: 'white' }} to="/">Home</Link> */}
-                {props.isAuthorized &&
-                    <div>
-                        <Link className='btn shadow-none' style={{ color: 'white' }} to="/posts">Posts</Link>
-                        <Link className='btn shadow-none' style={{ color: 'white' }} to="/createPost">Create Posts</Link>
-                        <Link className='btn shadow-none' style={{ color: 'white' }} to="/postDetails"> Details Posts</Link>
-                    </div>
-                }
+                <div className="row">
+                    <Link className='btn shadow-none' style={{ color: 'white' }} to="/posts">Posts</Link>
+                    {(props.state == CognitoState.LOGGED_IN || props.state == CognitoState.LOGGING_IN) &&
+                        <div>
+                            <Link className='btn shadow-none' style={{ color: 'white' }} to="/createPost">Create Posts</Link>
+                            <Link className='btn shadow-none' style={{ color: 'white' }} to="/postDetails"> Details Posts</Link>
+                        </div>
+                    }
+                </div>
             </Form>
             <Form inline>
-                {props.isAuthorized &&
-                    <Link className='btn shadow-none' style={{ color: 'white' }} to="/logOut">Log Out</Link>
+                {props.state == CognitoState.LOGGED_IN &&
+                    <Link className='btn shadow-none' style={{ color: 'white' }} to="/logOut"><Logout><LogoutButton onClick={() => { }}></LogoutButton></Logout></Link>
                 }
-                {!props.isAuthorized &&
-                <Link className='btn shadow-none' style={{ color: 'white' }} to="/logIn">Log In</Link>
+                {props.state == CognitoState.LOGGED_OUT &&
+                    <div>
+                        <Link className='btn shadow-none' style={{ color: 'white' }} to="/logIn">Log In</Link>
+                        <Link className='btn shadow-none' style={{ color: 'white' }} to="/register">Sign Up</Link>
+                    </div>
                 }
             </Form>
         </Navbar>
     );
 }
 
-const mapStateToProps = ({ authorize }: IApplicationState) => {
-    var authorize: IAuthorizeState = authorize;
+const mapStateToProps = (store) => {
+    let as = "adsad";
     return {
-        isAuthorized: authorize.isAuthorized
+        state: store.cognito.state
     }
 }
 
