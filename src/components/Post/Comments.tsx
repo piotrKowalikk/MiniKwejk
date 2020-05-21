@@ -62,7 +62,7 @@ const Comments: React.FC<ICommentsProps> = (props: ICommentsProps) => {
 const mapStateToProps = (store) => {
     return {
         state: store.cognito.state,
-        username: store.cognito.user.username
+        username: store.cognito?.user?.username
     }
 }
 

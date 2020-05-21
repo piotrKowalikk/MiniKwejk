@@ -12,15 +12,13 @@ const ConfirmPage: React.FC<IConfirmPageProps> = (props: IConfirmPageProps) => {
         if (props.state == CognitoState.LOGGED_IN)
             props.history.push('posts');
         if (props.state == CognitoState.LOGGED_OUT)
-            props.history.push('posts');
+            props.history.push('logIn');
     });
     return (
         <div>
-            <p>A confirmation code has been sent to your email address</p>
             <Confirm>
                 <ConfirmForm onSubmit={() => { }} error="confirm err" onCancel={() => { }} onResend={() => { }} />
             </Confirm>
-            <Link to="/">Home</Link>
         </div>);
 
 };
