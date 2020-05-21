@@ -47,10 +47,9 @@ export const PostView: React.FC<IPostProps> = (props: IPostProps) => {
         width: "100%",
         height: "auto",
         paddingTop: 5,
-        paddingBottom: 5,
+        paddingBottom: padding/2,
         paddingLeft: padding,
         paddingRight: padding,
-
     };
     const onImageClick = () => {
 
@@ -67,13 +66,13 @@ export const PostView: React.FC<IPostProps> = (props: IPostProps) => {
                     <img style={imgStyle} src={props.post.imageURL} />
                 </Link>
             </div>
-            <div style={ratingBar}>
+            {/* <div style={ratingBar}>
                 <button type="button"
                     id="testBtn"
                     className="btn btn-success glyphicon glyphicon-thumbs-up"
                     data-loading-text=" ... ">
                     <FontAwesomeIcon icon={faThumbsUp} /> {props.post.numberOfLikes}
                 </button>
-            </div>
+            </div> */}
         </div >);
 }

@@ -1,1 +1,0 @@
-export const dataFetchError = "Cannot fetch data from server.";

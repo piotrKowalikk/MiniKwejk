@@ -9,11 +9,11 @@ export class Post {
     numberOfLikes: number;
 
     parseData(data: any) {
-        this.id = data.id;
-        this.imageURL = data.imageURL;
-        this.title = data.title;
-        this.date = data.date;
-        this.author = data.author;
-        this.numberOfLikes = data.numberOfLikes;
+        this.id = data.Id;
+        this.imageURL = data.ImageURL;
+        this.title = data.Title;
+        this.date = data.Date;
+        this.author = data.Author;
+        this.numberOfLikes = data.NumberOfLikes;
     }
 }

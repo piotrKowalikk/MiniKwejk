@@ -4,17 +4,15 @@ import { BrowserRouter as Router, Switch, Route, BrowserRouter, HashRouter } fro
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider, connect } from 'react-redux'
 import NavBar from './NavBar';
-import LogIn from './Authentication/LogIn';
 import LogOut from './Authentication/LogOut';
 import Home from './Home';
 import { IApplicationState } from '../redux/rootReducer';
-import { IAuthorizeState } from '../redux/authorization/types/authorizationTypes';
 import { Footer } from './Footer';
-import { PostList } from './Post/PostList';
+import { PostList } from './Post/PostsList/PostList';
 import { CreatePost } from './Post/CreatePost';
 import { PostDetailsContainer } from './Post/PostDetailsContainer';
 import { PostView } from './Post/Post';
-import { PostListContainer } from './Post/PostListContainer';
+import { PostListContainer } from './Post/PostsList/PostListContainer';
 import { relative } from 'path';
 import RegisterForm from './Cognito/Register/RegisterForm';
 import { LoginPage } from './Cognito/Login/LoginPage';

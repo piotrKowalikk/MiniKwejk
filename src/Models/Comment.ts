@@ -1,12 +1,12 @@
 
 export class PostComment {
     author: string;
-    date: string;
+    date: Date;
     content: string;
 
     parseData(data) {
-        this.author = data.author;
-        this.date = data.date;
-        this.content = data.content;
+        this.author = data.Author;
+        this.date = new Date(Date.parse(data.Date));
+        this.content = data.Content;
     }
 }

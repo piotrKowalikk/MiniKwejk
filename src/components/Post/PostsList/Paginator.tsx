@@ -50,26 +50,26 @@ export const Paginator: React.FC<IPaginatorProps> = (props: IPaginatorProps) => 
     const numberOfButtons: number = 5;
     const [currentPage, setCurrentPage] = React.useState<number>(1);
     const [numberOfLeftButtons, setNumberOfLeftButtons] = React.useState<number>(0);
-    const [numberOfRightButtons, setNumberOfRightButtons] = React.useState<number>(numberOfButtons - 1);
-    let numberOfPages = Math.floor(props.numberOfPosts / props.numberOfPostsPerPage);
+    let numberOfPages = Math.ceil(props.numberOfPosts / props.numberOfPostsPerPage);
+    const [numberOfRightButtons, setNumberOfRightButtons] = React.useState<number>(numberOfPages < 4 ? numberOfPages - 1 : 4);
     const onClickButton = (pageNumber) => {
         let newLeftButtons: number = 2;
         let newRightButtons: number = 2;
         switch (pageNumber) {
             case 1:
                 newLeftButtons = 0;
-                newRightButtons = 4;
+                newRightButtons = numberOfPages >= 5 ? 5 - 1 : numberOfPages - 1;
                 break;
             case 2:
                 newLeftButtons = 1;
-                newRightButtons = 3;
+                newRightButtons = numberOfPages >= 5 ? 5 - 2 : numberOfPages - 2;
                 break;
             case numberOfPages - 1:
                 newLeftButtons = 3;
                 newRightButtons = 1;
                 break;
             case numberOfPages:
-                newLeftButtons = 4;
+                newLeftButtons = numberOfPages > 4 ? 4 : pageNumber - 1;
                 newRightButtons = 0;
                 break;
             default:
@@ -81,7 +81,7 @@ export const Paginator: React.FC<IPaginatorProps> = (props: IPaginatorProps) => 
         setCurrentPage(pageNumber);
         setButtons(createButtons(newLeftButtons, pageNumber, newRightButtons, onClickButton))
     };
-    const [buttons, setButtons] = React.useState<any>(createButtons(0, 1, 4, onClickButton));
+    const [buttons, setButtons] = React.useState<any>(createButtons(0, 1, numberOfRightButtons, onClickButton));
 
 
     return (

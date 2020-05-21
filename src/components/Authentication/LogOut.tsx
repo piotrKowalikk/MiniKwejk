@@ -3,12 +3,9 @@ import { Form, Container } from 'react-bootstrap'
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { IApplicationState } from '../../redux/rootReducer';
-import { IAuthorizeState } from '../../redux/authorization/types/authorizationTypes';
-import { logOutAction } from '../../redux/authorization/actions/logOutAction';
 import { innerGreyColor } from '../../colors';
 
 interface ILogOutProps extends RouteComponentProps {
-    logOutAction: Function;
 }
 
 interface ILogOutState {
@@ -18,7 +15,6 @@ class LogOut extends React.Component<ILogOutProps, ILogOutState>{
 
     constructor(props) {
         super(props);
-        props.logOutAction();
     }
 
     render() {
@@ -47,15 +43,4 @@ class LogOut extends React.Component<ILogOutProps, ILogOutState>{
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    var props = {
-        logOutAction: () => dispatch(logOutAction())
-    };
-    return (
-        props
-    );
-}
-export default connect(
-    null,
-    mapDispatchToProps
-)(LogOut);
+export default (LogOut);

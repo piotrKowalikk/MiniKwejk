@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IApplicationState } from '../redux/rootReducer';
-import { IAuthorizeState } from '../redux/authorization/types/authorizationTypes';
 
 interface IHomeComponentProps extends RouteComponentProps {
     isAuthorized: boolean;
@@ -34,13 +33,4 @@ class Home extends React.Component<IHomeComponentProps, any>{
         );
     }
 }
-const mapStateToProps = ({ authorize }: IApplicationState) => {
-    var authorize: IAuthorizeState = authorize;
-    return {
-        isAuthorized: authorize.isAuthorized
-    }
-}
-export default connect(
-    mapStateToProps,
-    null)
-    (withRouter(Home))
+export default (withRouter(Home))

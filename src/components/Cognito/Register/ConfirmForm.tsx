@@ -1,11 +1,12 @@
 import * as React from "react";
-import * as PropTypes from 'prop-types';
+import { connect } from "react-redux";
 
 interface IConfirmForm {
   onSubmit: any;
   onCancel: any;
   onResend: any;
   error: string;
+  store: any;
 };
 
 class ConfirmForm extends React.Component<IConfirmForm, any> {
@@ -23,8 +24,7 @@ class ConfirmForm extends React.Component<IConfirmForm, any> {
     this.props.onSubmit(this.state.verificationCode)
       .then((user) => {
         console.log(user);
-        //TODO- here 
-
+        this.props.store.dispatch(user);
       })
       .catch((error) => {
         this.setState({ error });
@@ -61,5 +61,9 @@ class ConfirmForm extends React.Component<IConfirmForm, any> {
     </form>
   )
 }
-
-export default ConfirmForm;
+const mapStateToProps = (store) => {
+  return {
+    store
+  }
+};
+export default connect(mapStateToProps, null)(ConfirmForm);

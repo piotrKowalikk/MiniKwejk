@@ -1,6 +1,6 @@
 import * as React from "react";
-import { PostContainer } from "./PostContainer";
-import { Post } from "../../Models/Post";
+import { PostContainer } from "../PostContainer";
+import { Post } from "../../../Models/Post";
 
 interface IPostContainerProps {
     posts: Post[];

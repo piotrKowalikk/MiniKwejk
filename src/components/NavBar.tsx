@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Form } from 'react-bootstrap';
 import { Button } from '@material-ui/core';
 import { IApplicationState } from '../redux/rootReducer';
-import { IAuthorizeState } from '../redux/authorization/types/authorizationTypes';
 import { connect } from 'react-redux';
 import LogoutButton from './Cognito/LogoutButton';
 import { CognitoState, Logout } from 'react-cognito';
@@ -25,7 +24,6 @@ const NavBar = (props: INavBarProps) => {
                     {(props.state == CognitoState.LOGGED_IN || props.state == CognitoState.LOGGING_IN) &&
                         <div>
                             <Link className='btn shadow-none' style={{ color: 'white' }} to="/createPost">Create Posts</Link>
-                            <Link className='btn shadow-none' style={{ color: 'white' }} to="/postDetails"> Details Posts</Link>
                         </div>
                     }
                 </div>
