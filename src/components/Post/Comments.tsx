@@ -23,7 +23,6 @@ const Comments: React.FC<ICommentsProps> = (props: ICommentsProps) => {
         let response = await fetch("https://vppporgbhg.execute-api.us-east-1.amazonaws.com/Prod/CreateComment",
             {
                 method: "POST",
-                mode:"no-cors",
                 headers: {
                     "Authorization": props.store.cognito.user.signInUserSession.idToken.jwtToken
                 },

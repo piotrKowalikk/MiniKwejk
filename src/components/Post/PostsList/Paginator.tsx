@@ -51,7 +51,7 @@ export const Paginator: React.FC<IPaginatorProps> = (props: IPaginatorProps) => 
     const [currentPage, setCurrentPage] = React.useState<number>(1);
     const [numberOfLeftButtons, setNumberOfLeftButtons] = React.useState<number>(0);
     let numberOfPages = props.numberOfPages;
-    const [numberOfRightButtons, setNumberOfRightButtons] = React.useState<number>(numberOfPages < 4 ? numberOfPages - 1 : 4);
+    const [numberOfRightButtons, setNumberOfRightButtons] = React.useState<number>(numberOfPages <= 4 ? numberOfPages - 1 : 4);
     const onClickButton = (pageNumber) => {
         let newLeftButtons: number = 2;
         let newRightButtons: number = 2;
@@ -65,7 +65,7 @@ export const Paginator: React.FC<IPaginatorProps> = (props: IPaginatorProps) => 
                 newRightButtons = numberOfPages >= 5 ? 5 - 2 : numberOfPages - 2;
                 break;
             case numberOfPages - 1:
-                newLeftButtons = 3;
+                newLeftButtons = numberOfPages - 2 < 4 ? numberOfPages - 2 : 3;
                 newRightButtons = 1;
                 break;
             case numberOfPages:
@@ -86,7 +86,7 @@ export const Paginator: React.FC<IPaginatorProps> = (props: IPaginatorProps) => 
 
     return (
         <div className="row" style={{ marginLeft: 0, marginRight: 0, marginTop: 5, width: "100%", textAlign: "center", display: "block" }}>
-            {currentPage > 3 &&
+            {currentPage > 3 && numberOfPages > 5 &&
                 "... "
 
             }

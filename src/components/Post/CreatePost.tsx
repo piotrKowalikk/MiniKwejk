@@ -1,6 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { withRouter, RouteComponentProps } from "react-router-dom";
+import { Button } from "react-bootstrap";
 interface ICreatePost extends RouteComponentProps {
     store: any;
 }
@@ -18,17 +19,19 @@ const CreatePost: React.FC<ICreatePost> = (props: ICreatePost) => {
         paddingRight: 100
     };
     let fileInput = React.useRef();
+    let submitButton = React.useRef();
 
     const [error, setError] = React.useState<string>("");
     const [title, setTitle] = React.useState<string>("");
     const [fileName, setFileName] = React.useState<string>("");
     const [fileContent, setFileContent] = React.useState<any>("");
+    const [isLoading, setLoading] = React.useState<boolean>(false);
 
     const onCreate = async () => {
+        setLoading(true);
         try {
-            let response = await fetch("https://vppporgbhg.execute-api.us-east-1.amazonaws.com/Prod/CreatePost", {
+            fetch("https://vppporgbhg.execute-api.us-east-1.amazonaws.com/Prod/CreatePost", {
                 method: 'POST',
-                mode: "no-cors",
                 headers: {
                     "Authorization": props.store.cognito.user.signInUserSession.idToken.jwtToken
                 },
@@ -38,13 +41,20 @@ const CreatePost: React.FC<ICreatePost> = (props: ICreatePost) => {
                     "Filename": (fileInput.current as any).files[0].name,
                     "ContentData": fileContent
                 })
-            });
+            }).then(response => response.json())
+                .then(data => {
+                    props.history.push("/posts");
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    setLoading(false);
+                    setError("Something went wrong!");
+                });
         }
         catch (e) {
-            console.log(e)
             setError("Something went wrong!");
+            setLoading(false);
         }
-
     }
 
     return (
@@ -79,7 +89,12 @@ const CreatePost: React.FC<ICreatePost> = (props: ICreatePost) => {
                 <div className="mb-2 mt-2">
                     <input type="text" className="form-control" placeholder="Your title" required onChange={(event => { console.log(title); setTitle(event.target.value) })} />
                 </div>
-                <button className="btn btn-primary" onClick={onCreate}>Upload!</button>
+                <Button disabled={isLoading} className="btn btn-success" onClick={onCreate}>
+                    {isLoading &&
+                        <div style={{ marginLeft: (-1) * (submitButton.current ? (submitButton as any).current.offsetWidth / 2 + 6 : 0) }} className="spinner-border spinner-border-sm" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </div>
+                    }Upload!</Button>
             </div>
             <div className="col-md-3"></div>
         </div>);
