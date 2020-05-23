@@ -12,7 +12,7 @@ export class Post {
         this.id = data.Id;
         this.imageURL = data.ImageURL;
         this.title = data.Title;
-        this.date = data.Date;
+        this.date = new Date(Date.parse(data.Date));
         this.author = data.Author;
         this.numberOfLikes = data.NumberOfLikes;
     }

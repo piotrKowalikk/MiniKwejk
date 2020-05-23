@@ -10,7 +10,7 @@ import LogoutButton from './Cognito/LogoutButton';
 import { CognitoState, Logout } from 'react-cognito';
 
 
-export interface INavBarProps {
+export interface INavBarProps extends RouteComponentProps{
     state: string;
 }
 
@@ -21,7 +21,7 @@ const NavBar = (props: INavBarProps) => {
                 {/* <Link className='btn shadow-none' style={{ color: 'white' }} to="/">Home</Link> */}
                 <div className="row">
                     <Link className='btn shadow-none' style={{ color: 'white' }} to="/posts">Posts</Link>
-                    {(props.state == CognitoState.LOGGED_IN || props.state == CognitoState.LOGGING_IN) &&
+                    {props.state == CognitoState.LOGGED_IN &&
                         <div>
                             <Link className='btn shadow-none' style={{ color: 'white' }} to="/createPost">Create Posts</Link>
                         </div>
@@ -30,7 +30,7 @@ const NavBar = (props: INavBarProps) => {
             </Form>
             <Form inline>
                 {props.state == CognitoState.LOGGED_IN &&
-                    <Link className='btn shadow-none' style={{ color: 'white' }} to="/logOut"><Logout><LogoutButton onClick={() => { }}></LogoutButton></Logout></Link>
+                    <Logout><Link className='btn shadow-none' style={{ color: 'white' }} to="/logOut"><LogoutButton onClick={() => { props.history.push('/logOut')}}></LogoutButton></Link></Logout>
                 }
                 {props.state == CognitoState.LOGGED_OUT &&
                     <div>
@@ -52,5 +52,5 @@ const mapStateToProps = (store) => {
 
 export default connect(
     mapStateToProps
-)(NavBar);
+)(withRouter(NavBar));
 

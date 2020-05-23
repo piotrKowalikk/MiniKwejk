@@ -9,6 +9,7 @@ interface ICommentsProps {
     username: string;
     postId: string;
     onNewComment: any;
+    store: any
 }
 
 const Comments: React.FC<ICommentsProps> = (props: ICommentsProps) => {
@@ -22,6 +23,10 @@ const Comments: React.FC<ICommentsProps> = (props: ICommentsProps) => {
         let response = await fetch("https://vppporgbhg.execute-api.us-east-1.amazonaws.com/Prod/CreateComment",
             {
                 method: "POST",
+                mode:"no-cors",
+                headers: {
+                    "Authorization": props.store.cognito.user.signInUserSession.idToken.jwtToken
+                },
                 body: JSON.stringify({
                     "PostId": props.postId,
                     "Author": props.username,
@@ -61,6 +66,7 @@ const Comments: React.FC<ICommentsProps> = (props: ICommentsProps) => {
 
 const mapStateToProps = (store) => {
     return {
+        store,
         state: store.cognito.state,
         username: store.cognito?.user?.username
     }

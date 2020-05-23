@@ -9,7 +9,7 @@ import Home from './Home';
 import { IApplicationState } from '../redux/rootReducer';
 import { Footer } from './Footer';
 import { PostList } from './Post/PostsList/PostList';
-import { CreatePost } from './Post/CreatePost';
+import CreatePost from './Post/CreatePost';
 import { PostDetailsContainer } from './Post/PostDetailsContainer';
 import { PostView } from './Post/Post';
 import { PostListContainer } from './Post/PostsList/PostListContainer';

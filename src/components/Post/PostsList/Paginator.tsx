@@ -2,7 +2,7 @@ import * as React from "react";
 
 interface IPaginatorProps {
     onPageChange: any;
-    numberOfPosts: number;
+    numberOfPages: number;
     numberOfPostsPerPage: number;
 }
 
@@ -50,7 +50,7 @@ export const Paginator: React.FC<IPaginatorProps> = (props: IPaginatorProps) => 
     const numberOfButtons: number = 5;
     const [currentPage, setCurrentPage] = React.useState<number>(1);
     const [numberOfLeftButtons, setNumberOfLeftButtons] = React.useState<number>(0);
-    let numberOfPages = Math.ceil(props.numberOfPosts / props.numberOfPostsPerPage);
+    let numberOfPages = props.numberOfPages;
     const [numberOfRightButtons, setNumberOfRightButtons] = React.useState<number>(numberOfPages < 4 ? numberOfPages - 1 : 4);
     const onClickButton = (pageNumber) => {
         let newLeftButtons: number = 2;

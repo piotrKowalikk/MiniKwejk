@@ -58,7 +58,7 @@ export const PostView: React.FC<IPostProps> = (props: IPostProps) => {
         <div style={styleCard}>
             <div className="row" style={styleAuthorBar}>
                 <div className="col-md-8" style={{ paddingLeft: 0, paddingRight: 0 }}><img src="https://i1.kwejk.pl/k/users/thumbs/default.png" width="20" style={{ borderRadius: "50%" }} />{" " + props.post.author}</div>
-    <div className="col-md-4" style={{ textAlign: "right", paddingLeft: 0, paddingRight: 0 }}>{props.post.date}</div>
+    <div className="col-md-4" style={{ textAlign: "right", paddingLeft: 0, paddingRight: 0 }}>{props.post.date.toDateString()}</div>
             </div>
             <div style={styleTitleBar}>{props.post.title}</div>
             <div style={styleImageBar}>

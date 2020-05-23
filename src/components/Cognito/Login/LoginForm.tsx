@@ -25,17 +25,18 @@ export class HtmlLoginForm extends React.Component<ILoginFormProps, any> {
   }
 
   onSubmit = (event) => {
-    event.preventDefault();
-
+    this.setState({
+      isLoading: true
+    })
     this.props.onSubmit(this.state.username, this.state.password);
   }
 
   changeUsername = (event) => {
-    this.setState({ username: event.target.value });
+    this.setState({ username: event.target.value, isLoading: false });
   }
 
   changePassword = (event) => {
-    this.setState({ password: event.target.value });
+    this.setState({ password: event.target.value, isLoading: false });
   }
 
   componentWillUnmount = () => {
@@ -48,6 +49,11 @@ export class HtmlLoginForm extends React.Component<ILoginFormProps, any> {
       this.props.history.push('verification');
     if (this.props.state == CognitoState.CONFIRMATION_REQUIRED)
       this.props.history.push('confirm');
+    if (this.props.error != "" && this.state.isLoading) {
+      this.setState({
+        isLoading: false
+      })
+    }
   }
 
   render() {
@@ -84,10 +90,6 @@ export class HtmlLoginForm extends React.Component<ILoginFormProps, any> {
           <Form.Group controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control required type="password" placeholder="Password" onChange={this.changePassword} />
-            <Form.Text style={{ color: 'red' }} >{this.state.passwordError}</Form.Text>
-            {this.state.error &&
-              <Form.Text style={{ color: 'red' }} >{this.state.error}</Form.Text>
-            }
           </Form.Group>
           <div>
             <Button ref={this.submitButton} disabled={this.state.isLoading} className="btn-success" type="submit">Submit</Button>
