@@ -4,6 +4,7 @@ interface IPaginatorProps {
     onPageChange: any;
     numberOfPages: number;
     numberOfPostsPerPage: number;
+    pageNumber: number;
 }
 
 const createButtons = (leftButtons, currentPage, rightButtons, eventHandler): any[] => {
@@ -48,10 +49,11 @@ const createButtons = (leftButtons, currentPage, rightButtons, eventHandler): an
 
 export const Paginator: React.FC<IPaginatorProps> = (props: IPaginatorProps) => {
     const numberOfButtons: number = 5;
-    const [currentPage, setCurrentPage] = React.useState<number>(1);
+    // const [currentPage, setCurrentPage] = React.useState<number>(1);
     const [numberOfLeftButtons, setNumberOfLeftButtons] = React.useState<number>(0);
     let numberOfPages = props.numberOfPages;
     const [numberOfRightButtons, setNumberOfRightButtons] = React.useState<number>(numberOfPages <= 4 ? numberOfPages - 1 : 4);
+
     const onClickButton = (pageNumber) => {
         let newLeftButtons: number = 2;
         let newRightButtons: number = 2;
@@ -78,15 +80,21 @@ export const Paginator: React.FC<IPaginatorProps> = (props: IPaginatorProps) => 
         props.onPageChange(pageNumber);
         setNumberOfLeftButtons(newLeftButtons);
         setNumberOfRightButtons(newRightButtons);
-        setCurrentPage(pageNumber);
+        //    setCurrentPage(pageNumber);
         setButtons(createButtons(newLeftButtons, pageNumber, newRightButtons, onClickButton))
     };
+    React.useEffect(() => {
+      //  if (props.pageNumber != props.pageNumber) {
+            console.log('upate')
+            onClickButton(props.pageNumber);
+        //}
+    },[props.pageNumber]);
     const [buttons, setButtons] = React.useState<any>(createButtons(0, 1, numberOfRightButtons, onClickButton));
 
 
     return (
         <div className="row" style={{ marginLeft: 0, marginRight: 0, marginTop: 5, width: "100%", textAlign: "center", display: "block" }}>
-            {currentPage > 3 && numberOfPages > 5 &&
+            {props.pageNumber > 3 && numberOfPages > 5 &&
                 "... "
 
             }
@@ -97,7 +105,7 @@ export const Paginator: React.FC<IPaginatorProps> = (props: IPaginatorProps) => 
                     }
                 )
             }
-            {numberOfPages - currentPage > 3 &&
+            {numberOfPages - props.pageNumber > 3 &&
                 " ..."
 
             }

@@ -24,7 +24,7 @@ const fetchPosts = async (pageNumber = 1): Promise<IFetchPostsData> => {
     }
     let result: IFetchPostsData = {
         numberOfPages: responseToJson.PagesCount,
-        posts: tmpPosts.sort((a: Post, b: Post) => { return -1*((a.date as any) - (b.date as any)); })
+        posts: tmpPosts.sort((a: Post, b: Post) => { return -1 * ((a.date as any) - (b.date as any)); })
     };
     return result;
 }
@@ -34,6 +34,7 @@ export const PostListContainer: React.SFC = () => {
     const [posts, setPosts] = React.useState<Post[]>([]);
     const [numberOfPostsOnPage, setNumberOfPostsOnPage] = React.useState<number>(10);
     const [numberOfPages, setNumberOfPosts] = React.useState<number>(0);
+    const [pageNumber, setPageNumber] = React.useState<number>(1);
     const [loading, setLoading] = React.useState<boolean>(true);
 
     const pageNumberChange = async (pageNumber: number) => {
@@ -41,6 +42,7 @@ export const PostListContainer: React.SFC = () => {
         let data: IFetchPostsData = await fetchPosts(pageNumber);
         setPosts(data.posts);
         setNumberOfPosts(data.numberOfPages);
+        setPageNumber(pageNumber);
     };
 
     React.useEffect(() => {
@@ -60,8 +62,15 @@ export const PostListContainer: React.SFC = () => {
                         onPageChange={pageNumberChange}
                         numberOfPostsPerPage={numberOfPostsOnPage}
                         numberOfPages={numberOfPages}
-                    />
+                        pageNumber={pageNumber}
+                        />
                     <PostList posts={posts} />
+                    <Paginator 
+                        onPageChange={pageNumberChange}
+                        numberOfPostsPerPage={numberOfPostsOnPage}
+                        numberOfPages={numberOfPages}
+                        pageNumber={pageNumber}
+                        />
                 </div>
             }
             <div className="col-md-3"></div>
