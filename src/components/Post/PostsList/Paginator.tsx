@@ -54,7 +54,7 @@ export const Paginator: React.FC<IPaginatorProps> = (props: IPaginatorProps) => 
     let numberOfPages = props.numberOfPages;
     const [numberOfRightButtons, setNumberOfRightButtons] = React.useState<number>(numberOfPages <= 4 ? numberOfPages - 1 : 4);
 
-    const onClickButton = (pageNumber) => {
+    const onClickButton = (pageNumber, raiseEvent = true) => {
         let newLeftButtons: number = 2;
         let newRightButtons: number = 2;
         switch (pageNumber) {
@@ -77,18 +77,18 @@ export const Paginator: React.FC<IPaginatorProps> = (props: IPaginatorProps) => 
             default:
                 break;
         }
-        props.onPageChange(pageNumber);
+        if (raiseEvent) props.onPageChange(pageNumber);
         setNumberOfLeftButtons(newLeftButtons);
         setNumberOfRightButtons(newRightButtons);
         //    setCurrentPage(pageNumber);
         setButtons(createButtons(newLeftButtons, pageNumber, newRightButtons, onClickButton))
     };
     React.useEffect(() => {
-      //  if (props.pageNumber != props.pageNumber) {
-            console.log('upate')
-            onClickButton(props.pageNumber);
+        //  if (props.pageNumber != props.pageNumber) {
+        console.log('upate')
+        onClickButton(props.pageNumber, false);
         //}
-    },[props.pageNumber]);
+    }, [props.pageNumber]);
     const [buttons, setButtons] = React.useState<any>(createButtons(0, 1, numberOfRightButtons, onClickButton));
 
 
@@ -105,7 +105,7 @@ export const Paginator: React.FC<IPaginatorProps> = (props: IPaginatorProps) => 
                     }
                 )
             }
-            {numberOfPages - props.pageNumber > 3 &&
+            {props.numberOfPages > 5 && props.pageNumber < props.numberOfPages - 2 &&
                 " ..."
 
             }

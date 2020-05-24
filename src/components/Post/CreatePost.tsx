@@ -41,15 +41,13 @@ const CreatePost: React.FC<ICreatePost> = (props: ICreatePost) => {
                     "Filename": (fileInput.current as any).files[0].name,
                     "ContentData": fileContent
                 })
-            }).then(response => response.json())
-                .then(data => {
-                    props.history.push("/posts");
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                    setLoading(false);
-                    setError("Something went wrong!");
-                });
+            }).then(data => {
+                props.history.push("/posts");
+            }).catch((error) => {
+                console.error('Error:', error);
+                setLoading(false);
+                setError("Something went wrong!");
+            });
         }
         catch (e) {
             setError("Something went wrong!");
